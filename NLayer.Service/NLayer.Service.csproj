@@ -10,4 +10,8 @@
     <ProjectReference Include="..\NLayer.Repository\NLayer.Repository.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Serv.ce\" />
+  </ItemGroup>
+
 </Project>
