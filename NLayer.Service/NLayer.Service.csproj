@@ -7,11 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NLayer.Repository\NLayer.Repository.csproj" />
+    <Compile Remove="Serv.ce\**" />
+    <EmbeddedResource Remove="Serv.ce\**" />
+    <None Remove="Serv.ce\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Serv.ce\" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NLayer.Repository\NLayer.Repository.csproj" />
   </ItemGroup>
 
 </Project>
