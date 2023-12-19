@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NLayer.Core.DTOs
 {
-    public class CustomResponseDto<T>
+    public class CustomResponseDto<T> //Static Factory Method
     {
         public T Data { get; set; }
         [JsonIgnore]
@@ -17,7 +17,7 @@ namespace NLayer.Core.DTOs
         {
             return new CustomResponseDto<T> { StatusCode = statusCode, Data = data };
         }
-        public static CustomResponseDto<T> Success(int statusCode)
+        public static CustomResponseDto<T> Success(int statusCode, ProductDto productsDtos)
         {
             return new CustomResponseDto<T> { StatusCode = statusCode };
         }
