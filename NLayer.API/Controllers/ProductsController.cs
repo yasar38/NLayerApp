@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using NLayer.API.Filters;
 using NLayer.Core.DTOs;
 using NLayer.Core.Models;
 using NLayer.Core.Services;
@@ -10,7 +11,7 @@ namespace NLayer.API.Controllers
     {
         private readonly IMapper _mapper;
         private readonly IProductService _service;
-        public ProductsController(IMapper mapper, IService<Product> service, IProductService productService)
+        public ProductsController(IMapper mapper, IProductService productService)
         {
             _mapper = mapper;
             _service = productService;
@@ -27,6 +28,7 @@ namespace NLayer.API.Controllers
             var productsDtos = _mapper.Map<List<ProductDto>>(products.ToList());
             return CreateActionResult(CustomResponseDto<List<ProductDto>>.Success(200, productsDtos));
         }
+        [ServiceFilter(typeof(NotFoundFilter<Product>))]
         [HttpGet("{id}")] //www.mysite.com/api/products/5 bu şekilde url girildiğinde çalışması için id ekledik.
         public async Task<IActionResult> GetById(int id)
         {

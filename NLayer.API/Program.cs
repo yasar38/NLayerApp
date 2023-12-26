@@ -1,16 +1,13 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NLayer.API.Filters;
 using NLayer.API.Filters.Middlewares;
-using NLayer.Core.Repositories;
-using NLayer.Core.Services;
-using NLayer.Core.UnitOfWorks;
+using NLayer.API.Modules;
 using NLayer.Repository;
-using NLayer.Repository.Repositories;
-using NLayer.Repository.UnitOfWorks;
 using NLayer.Service.Mapping;
-using NLayer.Service.Services;
 using NLayer.Service.Validation;
 using System.Reflection;
 
@@ -25,13 +22,8 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
-builder.Services.AddScoped<ICategoryService, CategoryService>();
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-builder.Services.AddScoped(typeof(IService<>), typeof(Service<>));
+builder.Services.AddMemoryCache();
+builder.Services.AddScoped(typeof(NotFoundFilter<>));
 builder.Services.AddAutoMapper(typeof(MapProfile));
 builder.Services.AddDbContext<AppDbContext>(x =>
 {
@@ -40,6 +32,8 @@ builder.Services.AddDbContext<AppDbContext>(x =>
         option.MigrationsAssembly(Assembly.GetAssembly(typeof(AppDbContext)).GetName().Name);
     });
 });
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(containerbuilder => containerbuilder.RegisterModule(new RepoServiceModule()));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

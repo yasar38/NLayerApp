@@ -7,11 +7,11 @@ using NLayer.Core.UnitOfWorks;
 
 namespace NLayer.Service.Services
 {
-    public class ProductService : Service<Product>, IProductService
+    public class ProductServiceWithNoCaching : Service<Product>, IProductService
     {
         private readonly IProductRepository _productrepository;
         private readonly IMapper _mapper;
-        public ProductService(IUnitOfWork unitOfWork, IGenericRepository<Product> repository, IProductRepository productRepository, IMapper mapper) : base(unitOfWork, repository)
+        public ProductServiceWithNoCaching(IUnitOfWork unitOfWork, IGenericRepository<Product> repository, IProductRepository productRepository, IMapper mapper) : base(unitOfWork, repository)
         {
             _productrepository = productRepository;
             _mapper = mapper;
