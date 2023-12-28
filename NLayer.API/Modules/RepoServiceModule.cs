@@ -17,18 +17,25 @@ namespace NLayer.API.Modules
         protected override void Load(ContainerBuilder builder)
         {
             ///Bu kısımda isimleri özel olanlar için tek seferlik ekleme yapıyoruz.
-            ///
             builder.RegisterGeneric(typeof(GenericRepository<>)).As(typeof(IGenericRepository<>)).InstancePerLifetimeScope();
+
             builder.RegisterGeneric(typeof(Service<>)).As(typeof(IService<>)).InstancePerLifetimeScope();
-            builder.RegisterGeneric(typeof(ServiceWithDto<,>)).As(typeof(IProductServiceWithDto<,>)).InstancePerLifetimeScope(); // 2 adet referans aldığı için virgül koyduk araya
+
+            builder.RegisterGeneric(typeof(ServiceWithDto<,>)).As(typeof(IServiceWithDto<,>)).InstancePerLifetimeScope();// 2 adet referans aldığı için virgül koyduk araya
+
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
+
             builder.RegisterType<ProductServiceWithDto>().As<IProductServiceWithDto>().InstancePerLifetimeScope();
+
             var apiAssembly = Assembly.GetExecutingAssembly();
             var repoAssembly = Assembly.GetAssembly(typeof(AppDbContext));
             var serviceAssembly = Assembly.GetAssembly(typeof(MapProfile));
+
             builder.RegisterAssemblyTypes(apiAssembly, repoAssembly, serviceAssembly).Where(x => x.Name.EndsWith("Repository")).AsImplementedInterfaces().InstancePerLifetimeScope();
+
             builder.RegisterAssemblyTypes(apiAssembly, repoAssembly, serviceAssembly).Where(x => x.Name.EndsWith("Service")).AsImplementedInterfaces().InstancePerLifetimeScope();
-            //builder.RegisterType<ProductServiceWithCaching>().As<IProductService>();
+
+            builder.RegisterType<ProductServiceWithCaching>().As<IProductService>();
         }
     }
 }
