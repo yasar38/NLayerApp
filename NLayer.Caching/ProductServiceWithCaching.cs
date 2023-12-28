@@ -26,7 +26,7 @@ namespace NLayer.Caching
             _unitOfWork = unitOfWork;
             if (!_cache.TryGetValue(CacheProductKey, out _))
             {
-                _cache.Set(CacheProductKey, _repository.GetProductsWitCategory().Result);
+                _cache.Set(CacheProductKey, _repository.GetProductsWithCategory().Result);
             }
         }
         public async Task<Product> AddAsync(Product entity)
@@ -66,7 +66,7 @@ namespace NLayer.Caching
             return Task.FromResult(product);
         }
 
-        public Task<CustomResponseDto<List<ProductWithCategoryDto>>> GetProductsWitCategory()
+        public Task<CustomResponseDto<List<ProductWithCategoryDto>>> GetProductsWithCategory()
         {
             var products = _cache.Get<IEnumerable<Product>>(CacheProductKey);
             var productsWithCategoryDto = _mapper.Map<List<ProductWithCategoryDto>>(products);

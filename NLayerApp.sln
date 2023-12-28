@@ -11,9 +11,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLayer.Service", "NLayer.Se
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLayer.API", "NLayer.API\NLayer.API.csproj", "{7848A319-7B2B-444C-A429-C05C95BA5699}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLayer.Web", "NLayer.Web\NLayer.Web.csproj", "{1CE4DF35-227D-43D4-8006-2D5726F4277F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NLayer.Caching", "NLayer.Caching\NLayer.Caching.csproj", "{395AACC0-0CCE-49AC-8D47-AD122FBC521B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLayer.Caching", "NLayer.Caching\NLayer.Caching.csproj", "{395AACC0-0CCE-49AC-8D47-AD122FBC521B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4765FC39-77C8-46EC-B196-D45F3D653834}"
+	ProjectSection(SolutionItems) = preProject
+		Ports.txt = Ports.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,10 +40,6 @@ Global
 		{7848A319-7B2B-444C-A429-C05C95BA5699}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7848A319-7B2B-444C-A429-C05C95BA5699}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7848A319-7B2B-444C-A429-C05C95BA5699}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1CE4DF35-227D-43D4-8006-2D5726F4277F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1CE4DF35-227D-43D4-8006-2D5726F4277F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1CE4DF35-227D-43D4-8006-2D5726F4277F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1CE4DF35-227D-43D4-8006-2D5726F4277F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{395AACC0-0CCE-49AC-8D47-AD122FBC521B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{395AACC0-0CCE-49AC-8D47-AD122FBC521B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{395AACC0-0CCE-49AC-8D47-AD122FBC521B}.Release|Any CPU.ActiveCfg = Release|Any CPU
